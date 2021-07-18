@@ -5,12 +5,12 @@ import time
 import os
 
 def get_clips():
-    number_of_videos = 10
+    number_of_videos = 50
     period = 'day'
     language = 'en'
     url="https://api.twitch.tv/kraken/clips/top?limit="+str(number_of_videos)+"&language="+language+"&period="+period
     referrer = "google.com"
-    client_id = 'owmbz8hmskjc1qccso5ocjotg870xc'
+    client_id = '<client id goes here>'
     headers = {
         'Client-ID' : client_id,    
         'Accept': 'application/vnd.twitchtv.v5+json'
@@ -26,7 +26,6 @@ def get_clips():
         clip_url = item['url']
         clip_title = item['title']
         channel_url = item['broadcaster']['channel_url']
-        clip_details = {'slug': clip_slug, 'url': clip_url, 'image': clip_image, 'title': clip_title, 'channel_url': channel_url};
+        clip_details = {'slug': clip_slug, 'url': clip_url, 'image': clip_image, 'title': clip_title[0:99], 'channel_url': channel_url};
         clips.append(clip_details)
-        #print(clip_details)
     return clips

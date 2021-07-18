@@ -3,24 +3,25 @@ import sys
 import urllib.request
 
 def download_clips(clips):
-    client_id = 'owmbz8hmskjc1qccso5ocjotg870xc'
-    basepath = 'tmp/'
+    tmp = 'tmp/'
+    img = 'img/'
     
     for clip in clips:
         mp4_url = clip['image'].split('-preview',1)[0] + ".mp4"
-        out_filename = clip['slug'] + ".mp4"
-        output_path = basepath + out_filename
-        print("mp4 url: " + mp4_url)
-        print("out filename " + out_filename)
+        img_url = clip['image']
+        out_filename_vid = clip['slug'] + ".mp4"
+        out_filename_img = clip['slug'] + ".jpg"
+
+        output_path_vid = tmp + out_filename_vid
+        output_path_img = img + out_filename_img
         # create the basepath directory
-        if not os.path.exists(basepath):
-            os.makedirs(basepath)
 
         try:
-            urllib.request.urlretrieve(mp4_url, output_path)
+            urllib.request.urlretrieve(mp4_url, output_path_vid)
+            urllib.request.urlretrieve(img_url, output_path_img)
         except:
             print("An exception occurred")
-        print('done')
+
 
 
 
