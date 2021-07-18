@@ -14,7 +14,6 @@ def upload_clips(clips):
     options.add_argument("start-maximized")
     options.add_argument("--disable-extensions")
 
-    # Pass the argument 1 to allow and 2 to block
     options.add_experimental_option("prefs", { 
         "profile.default_content_setting_values.notifications": 2 
     })
@@ -22,6 +21,7 @@ def upload_clips(clips):
     driver = webdriver.Chrome(options=options, executable_path="driver/chromedriver.exe")
     driver.get('<your YouTube channel goes here>')
 
+    #goes through upload process
     sign_in_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//*[@id='buttons']/ytd-button-renderer/a")))
     sign_in_button.click()
 
@@ -37,7 +37,6 @@ def upload_clips(clips):
     password_next_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//*[@id='passwordNext']/div/button")))
     password_next_button.click()
 
-    ################################### look here
     create_videos_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/ytd-app/div/div/ytd-masthead/div[3]/div[3]/div[2]/ytd-topbar-menu-button-renderer[1]/div/a/yt-icon-button/button/yt-icon")))
     create_videos_button.click()
 
@@ -45,6 +44,7 @@ def upload_clips(clips):
     upload_videos_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/ytd-app/ytd-popup-container/tp-yt-iron-dropdown/div/ytd-multi-page-menu-renderer/div[3]/div[1]/yt-multi-page-menu-section-renderer/div[2]/ytd-compact-link-renderer[1]/a/tp-yt-paper-item")))
     upload_videos_button.click()
 
+    #if there are multiple clips uploads all of them
     for clip in clips:
         if(initial):
             create_videos_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/ytcp-app/ytcp-entity-page/div/ytcp-header/header/div/ytcp-button")))
@@ -90,6 +90,7 @@ def upload_clips(clips):
         close_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, "/html/body/ytcp-uploads-still-processing-dialog/ytcp-dialog/tp-yt-paper-dialog/div[3]/ytcp-button")))
         close_button.click()
 
+        #used for multiple clips
         initial = True;
 
     

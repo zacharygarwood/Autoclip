@@ -5,6 +5,7 @@ import time
 import os
 
 def get_clips():
+    #parameters
     number_of_videos = 50
     period = 'day'
     language = 'en'
@@ -20,6 +21,8 @@ def get_clips():
     paths=[]   
     response_dict = json.loads(response.content)
     temp = None;
+
+    #get clip data
     for item in response_dict['clips']:
         clip_slug = item['slug']
         clip_image = item['thumbnails']['medium']

@@ -17,6 +17,7 @@ def download_clips(clips):
         # create the basepath directory
 
         try:
+            #move files to output path
             urllib.request.urlretrieve(mp4_url, output_path_vid)
             urllib.request.urlretrieve(img_url, output_path_img)
         except:
