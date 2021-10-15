@@ -3,8 +3,8 @@ import sys
 import urllib.request
 
 def download_clips(clips):
-    tmp = 'tmp/'
-    img = 'img/'
+    tmp = 'D:/zgarw/Documents/Projects/autoclip/tmp/'
+    img = 'D:/zgarw/Documents/Projects/autoclip/img/'
     
     for clip in clips:
         mp4_url = clip['image'].split('-preview',1)[0] + ".mp4"
